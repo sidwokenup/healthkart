@@ -2,6 +2,7 @@ import Hero from "@/components/home/Hero";
 import CategoryGrid from "@/components/home/CategoryGrid";
 import OfferBanner from "@/components/home/OfferBanner";
 import FeaturedSection from "@/components/home/FeaturedSection";
+import ConsultationSection from "@/components/home/ConsultationSection";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <CategoryGrid />
       <OfferBanner />
       <FeaturedSection />
+      <ConsultationSection />
     </div>
   );
 }
