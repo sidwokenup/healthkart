@@ -5,6 +5,16 @@ import { CartProvider } from "@/context/CartContext";
 
 import { getAllCategories } from "@/lib/products";
 
+export const metadata = {
+  title: "HealthKart – Your Pharmacy Delivered",
+  description: "Order medicines online with trusted delivery. Fast, secure, and reliable pharmacy services in the USA.",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: {

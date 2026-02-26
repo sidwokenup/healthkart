@@ -1,6 +1,10 @@
-// Placeholder for the Google Apps Script Web App URL
-// User must replace this with their actual deployed Web App URL
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxxiULftUA-GsKtnHie6mvBXjUfBHdnaMKRbKxPDypvnsExgpf9UWl6jFRIIiZ3GIaTzw/exec"; 
+const GOOGLE_SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL;
+
+if (!GOOGLE_SCRIPT_URL) {
+  // In development, we might not have the env var set yet, so we can log a warning.
+  // In production, this should ideally be a strict check, but to prevent build failures if the user forgot:
+  console.warn("NEXT_PUBLIC_GOOGLE_SCRIPT_URL is not defined. Google Sheets integration will not work.");
+} 
 
 export interface PopupLeadData {
   type: "popup";
@@ -46,8 +50,8 @@ export interface OrderData {
 type SheetData = PopupLeadData | ConsultationData | OrderData;
 
 export const submitToGoogleSheets = async (data: SheetData): Promise<{ success: boolean; message?: string }> => {
-  if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL")) {
-    console.error("Google Sheets URL not configured. Please set GOOGLE_SCRIPT_URL in lib/googleSheets.ts");
+  if (!GOOGLE_SCRIPT_URL) {
+    console.error("Google Sheets URL not configured. Please set NEXT_PUBLIC_GOOGLE_SCRIPT_URL environment variable.");
     // Mock success for development if URL is not set, so the UI doesn't break
     return { success: true, message: "Mock success (URL not set)" }; 
   }
