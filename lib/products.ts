@@ -9,7 +9,7 @@ export interface Product {
   price: number;
   originalPrice: number;
   description: string;
-  meta_description: string;
+  meta_description?: string;
   meta_title?: string; // Optional field for SEO title
   image_alt?: string;
   images: string[];
