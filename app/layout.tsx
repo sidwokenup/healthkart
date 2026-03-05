@@ -5,6 +5,7 @@ import { CartProvider } from "@/context/CartContext";
 
 import { getAllCategories } from "@/lib/products";
 import { Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://medsforpain.com"),
@@ -53,6 +54,20 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-1G9WEE5S25"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-1G9WEE5S25');
+          `}
+        </Script>
+      </head>
       <body className="min-h-screen flex flex-col antialiased">
         <CartProvider>
           <Header categories={categories} />
