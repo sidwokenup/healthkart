@@ -31,16 +31,12 @@ export default function Header({ categories = [] }: HeaderProps) {
     // Check if user has already submitted info or previously been shown the popup
     const hasSubmitted = localStorage.getItem("userInfoSubmitted");
 
-    // Auto-open if not submitted and not shown in this session (optional, but requirement says "This must only happen on the first visit, not repeatedly on every page refresh.")
-    // To satisfy "not repeatedly on every page refresh" AND "Option 1: reappear next visit",
-    // we need a session-based storage or just check if it's already open.
-    // Actually, "Option 1" implies we treat every reload as a "visit" if we don't persist dismissal.
-    // But "not repeatedly on every page refresh" suggests we SHOULD persist dismissal at least for the session.
-    // However, the prompt explicitly says: "If User Closes Popup Without Submitting: Option 1 (Recommended): Do NOT set localStorage. So popup can reappear next visit."
-    // This overrides the "annoy" constraint. I will stick to the simple check: if not submitted, show it.
-
     if (!hasSubmitted) {
-      setIsModalOpen(true);
+      const timer = setTimeout(() => {
+        setIsModalOpen(true);
+      }, 12000); // 12 seconds delay (between 10-15s)
+
+      return () => clearTimeout(timer);
     }
   }, []);
 
