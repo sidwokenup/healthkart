@@ -62,7 +62,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
-  const cartTotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const cartTotal = items.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   return (
     <CartContext.Provider
@@ -73,7 +76,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         updateQuantity,
         clearCart,
         cartCount,
-        cartTotal,
+        cartTotal
       }}
     >
       {children}

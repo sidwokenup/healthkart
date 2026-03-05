@@ -1,7 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { User, Mail, Phone, Pill, MessageSquare, Send, Loader2 } from "lucide-react";
+import {
+  User,
+  Mail,
+  Phone,
+  Pill,
+  MessageSquare,
+  Send,
+  Loader2
+} from "lucide-react";
 import { submitToGoogleSheets } from "@/lib/googleSheets";
 
 export default function ConsultationSection() {
@@ -13,11 +21,16 @@ export default function ConsultationSection() {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [statusMessage, setStatusMessage] = useState<{ type: "success" | "error", text: string } | null>(null);
+  const [statusMessage, setStatusMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { id, value } = e.target;
-    setFormData(prev => ({ ...prev, [id]: value }));
+    setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,10 +44,22 @@ export default function ConsultationSection() {
     });
 
     if (result.success) {
-      setStatusMessage({ type: "success", text: "Your request has been submitted successfully." });
-      setFormData({ name: "", phone: "", email: "", medicine: "", message: "" });
+      setStatusMessage({
+        type: "success",
+        text: "Your request has been submitted successfully."
+      });
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        medicine: "",
+        message: ""
+      });
     } else {
-      setStatusMessage({ type: "error", text: "Submission failed. Please try again." });
+      setStatusMessage({
+        type: "error",
+        text: "Submission failed. Please try again."
+      });
     }
     setIsSubmitting(false);
   };
@@ -54,16 +79,17 @@ export default function ConsultationSection() {
         <div className="flex flex-col lg:flex-row bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
           {/* Left Column: Image */}
           <div className="lg:w-1/2 relative min-h-[300px] lg:min-h-full">
-            <img 
-              src="/products/MedicalBanner.png" 
-              alt="Expert Medical Consultation" 
+            <img
+              src="/products/MedicalBanner.png"
+              alt="Expert Medical Consultation"
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-start p-8">
               <div className="text-white">
                 <h3 className="text-2xl font-bold mb-2">Expert Advice</h3>
                 <p className="text-white/90 max-w-xs">
-                  Connect with our qualified pharmacists for personalized health recommendations.
+                  Connect with our qualified pharmacists for personalized health
+                  recommendations.
                 </p>
               </div>
             </div>
@@ -74,8 +100,12 @@ export default function ConsultationSection() {
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
-                  <label htmlFor="name" className="text-sm font-medium text-gray-700 flex items-center">
-                    <User size={14} className="mr-1.5 text-gray-400" /> Your Name <span className="text-red-500 ml-1">*</span>
+                  <label
+                    htmlFor="name"
+                    className="text-sm font-medium text-gray-700 flex items-center"
+                  >
+                    <User size={14} className="mr-1.5 text-gray-400" /> Your
+                    Name <span className="text-red-500 ml-1">*</span>
                   </label>
                   <input
                     type="text"
@@ -89,8 +119,12 @@ export default function ConsultationSection() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label htmlFor="phone" className="text-sm font-medium text-gray-700 flex items-center">
-                    <Phone size={14} className="mr-1.5 text-gray-400" /> Your Phone <span className="text-red-500 ml-1">*</span>
+                  <label
+                    htmlFor="phone"
+                    className="text-sm font-medium text-gray-700 flex items-center"
+                  >
+                    <Phone size={14} className="mr-1.5 text-gray-400" /> Your
+                    Phone <span className="text-red-500 ml-1">*</span>
                   </label>
                   <input
                     type="tel"
@@ -105,7 +139,10 @@ export default function ConsultationSection() {
               </div>
 
               <div className="space-y-1.5">
-                <label htmlFor="email" className="text-sm font-medium text-gray-700 flex items-center">
+                <label
+                  htmlFor="email"
+                  className="text-sm font-medium text-gray-700 flex items-center"
+                >
                   <Mail size={14} className="mr-1.5 text-gray-400" /> Email
                 </label>
                 <input
@@ -119,7 +156,10 @@ export default function ConsultationSection() {
               </div>
 
               <div className="space-y-1.5">
-                <label htmlFor="medicine" className="text-sm font-medium text-gray-700 flex items-center">
+                <label
+                  htmlFor="medicine"
+                  className="text-sm font-medium text-gray-700 flex items-center"
+                >
                   <Pill size={14} className="mr-1.5 text-gray-400" /> Medicine
                 </label>
                 <input
@@ -133,8 +173,12 @@ export default function ConsultationSection() {
               </div>
 
               <div className="space-y-1.5">
-                <label htmlFor="message" className="text-sm font-medium text-gray-700 flex items-center">
-                  <MessageSquare size={14} className="mr-1.5 text-gray-400" /> Message
+                <label
+                  htmlFor="message"
+                  className="text-sm font-medium text-gray-700 flex items-center"
+                >
+                  <MessageSquare size={14} className="mr-1.5 text-gray-400" />{" "}
+                  Message
                 </label>
                 <textarea
                   id="message"
@@ -147,9 +191,13 @@ export default function ConsultationSection() {
               </div>
 
               {statusMessage && (
-                <div className={`p-3 text-sm rounded-lg text-center ${
-                  statusMessage.type === "success" ? "bg-green-50 text-green-700 border border-green-100" : "bg-red-50 text-red-600 border border-red-100"
-                }`}>
+                <div
+                  className={`p-3 text-sm rounded-lg text-center ${
+                    statusMessage.type === "success"
+                      ? "bg-green-50 text-green-700 border border-green-100"
+                      : "bg-red-50 text-red-600 border border-red-100"
+                  }`}
+                >
                   {statusMessage.text}
                 </div>
               )}
@@ -162,7 +210,8 @@ export default function ConsultationSection() {
                 >
                   {isSubmitting ? (
                     <>
-                      <Loader2 size={18} className="mr-2 animate-spin" /> Submitting...
+                      <Loader2 size={18} className="mr-2 animate-spin" />{" "}
+                      Submitting...
                     </>
                   ) : (
                     <>
@@ -171,10 +220,17 @@ export default function ConsultationSection() {
                   )}
                 </button>
                 <p className="text-xs text-gray-500 text-center mt-3">
-                  By submitting this form, you agree to our terms and privacy policy.
+                  By submitting this form, you agree to our terms and privacy
+                  policy.
                 </p>
                 <div className="text-center mt-4 text-sm text-gray-600">
-                  Contact us on Ph no. <span className="font-semibold text-gray-800">+44 7425168723</span> <span className="text-gray-400 text-xs">(Available 24x7)</span>
+                  Contact us on Ph no.{" "}
+                  <span className="font-semibold text-gray-800">
+                    +13122483163
+                  </span>{" "}
+                  <span className="text-gray-400 text-xs">
+                    (Available 24x7)
+                  </span>
                 </div>
               </div>
             </form>

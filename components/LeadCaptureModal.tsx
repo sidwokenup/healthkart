@@ -9,12 +9,18 @@ interface LeadCaptureModalProps {
   onClose: () => void;
 }
 
-export default function LeadCaptureModal({ isOpen, onClose }: LeadCaptureModalProps) {
+export default function LeadCaptureModal({
+  isOpen,
+  onClose
+}: LeadCaptureModalProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState<{ type: "success" | "error", text: string } | null>(null);
+  const [message, setMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -41,15 +47,21 @@ export default function LeadCaptureModal({ isOpen, onClose }: LeadCaptureModalPr
 
     if (result.success) {
       localStorage.setItem("userInfoSubmitted", "true");
-      setMessage({ type: "success", text: "Your request has been submitted successfully." });
-      
+      setMessage({
+        type: "success",
+        text: "Your request has been submitted successfully."
+      });
+
       // Close after a brief delay to show success message
       setTimeout(() => {
         setIsSubmitting(false);
         onClose();
       }, 1500);
     } else {
-      setMessage({ type: "error", text: "Submission failed. Please try again." });
+      setMessage({
+        type: "error",
+        text: "Submission failed. Please try again."
+      });
       setIsSubmitting(false);
     }
   };
@@ -65,7 +77,7 @@ export default function LeadCaptureModal({ isOpen, onClose }: LeadCaptureModalPr
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
       {/* Overlay */}
-      <div 
+      <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
         onClick={handleClose}
       />
@@ -90,16 +102,23 @@ export default function LeadCaptureModal({ isOpen, onClose }: LeadCaptureModalPr
           </div>
 
           {message && (
-            <div className={`mb-4 p-3 text-sm rounded-lg text-center ${
-              message.type === "success" ? "bg-green-50 text-green-700 border border-green-100" : "bg-red-50 text-red-600 border border-red-100"
-            }`}>
+            <div
+              className={`mb-4 p-3 text-sm rounded-lg text-center ${
+                message.type === "success"
+                  ? "bg-green-50 text-green-700 border border-green-100"
+                  : "bg-red-50 text-red-600 border border-red-100"
+              }`}
+            >
               {message.text}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="modal-name" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="modal-name"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -114,7 +133,10 @@ export default function LeadCaptureModal({ isOpen, onClose }: LeadCaptureModalPr
             </div>
 
             <div>
-              <label htmlFor="modal-email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="modal-email"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Email <span className="text-red-500">*</span>
               </label>
               <input
@@ -129,7 +151,10 @@ export default function LeadCaptureModal({ isOpen, onClose }: LeadCaptureModalPr
             </div>
 
             <div>
-              <label htmlFor="modal-phone" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="modal-phone"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Phone Number <span className="text-red-500">*</span>
               </label>
               <input
@@ -150,16 +175,20 @@ export default function LeadCaptureModal({ isOpen, onClose }: LeadCaptureModalPr
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 size={18} className="mr-2 animate-spin" /> Submitting...
+                  <Loader2 size={18} className="mr-2 animate-spin" />{" "}
+                  Submitting...
                 </>
-              ) : "Submit"}
+              ) : (
+                "Submit"
+              )}
             </button>
           </form>
 
           {/* Promotional Copy */}
           <div className="mt-6 text-center space-y-3 pt-6 border-t border-gray-100">
             <p className="text-sm text-gray-600">
-              Available 24X7 — Contact Us: <span className="font-semibold text-gray-900">1234567890</span>
+              Available 24X7 — Contact Us:{" "}
+              <span className="font-semibold text-gray-900">+13122483163</span>
             </p>
             <p className="text-base md:text-lg font-bold text-primary leading-tight">
               Get 40% Off on the total cart value for early birds!

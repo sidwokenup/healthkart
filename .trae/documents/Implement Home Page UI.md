@@ -1,6 +1,7 @@
 # Home Page UI Implementation Plan
 
 ## 1. Component Structure
+
 I will create a structured set of components to keep the Home page clean and modular:
 
 - **`components/home/Hero.tsx`**:
@@ -21,6 +22,7 @@ I will create a structured set of components to keep the Home page clean and mod
   - Displays a list of `ProductCard`s under a "Popular Medicines" heading.
 
 ## 2. Implementation Details
+
 - **Styling**:
   - Use `bg-primary/5` or similar light shades for section backgrounds to maintain the "clean medical" look.
   - Ensure touch targets (buttons, cards) are large enough for mobile users.
@@ -29,6 +31,7 @@ I will create a structured set of components to keep the Home page clean and mod
   - Create a mock data file or array within the components to populate the UI (Categories, Products).
 
 ## 3. Integration
+
 - Update **`app/page.tsx`** to import and stack these sections vertically:
   1. `<Hero />`
   2. `<CategoryGrid />`
@@ -36,5 +39,6 @@ I will create a structured set of components to keep the Home page clean and mod
   4. `<FeaturedSection />`
 
 ## 4. Verification
+
 - Verify responsiveness (Mobile vs. Desktop layout).
 - Ensure consistency with the existing Header/Footer.

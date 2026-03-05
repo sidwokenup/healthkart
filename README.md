@@ -3,6 +3,7 @@
 Medicine E-commerce Application (Mobile-First)
 
 ## Tech Stack
+
 - **Framework**: Next.js 15+ (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS (Mobile-first)
@@ -11,11 +12,13 @@ Medicine E-commerce Application (Mobile-First)
 ## Getting Started
 
 1. **Install dependencies**:
+
    ```bash
    npm install
    ```
 
 2. **Run the development server**:
+
    ```bash
    npm run dev
    ```
@@ -37,4 +40,5 @@ Medicine E-commerce Application (Mobile-First)
 - **public/**: Static assets (images, fonts).
 
 ## Environment Variables
+
 Copy `.env.example` to `.env.local` to configure environment variables.

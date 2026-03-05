@@ -11,16 +11,27 @@ interface SearchInputProps {
   autoFocus?: boolean;
 }
 
-export default function SearchInput({ placeholder, className = "", autoFocus = false }: SearchInputProps) {
+export default function SearchInput({
+  placeholder,
+  className = "",
+  autoFocus = false
+}: SearchInputProps) {
   const router = useRouter();
   const [query, setQuery] = useState("");
-  const [suggestions, setSuggestions] = useState<{ type: 'product' | 'category', name: string, slug: string, categoryName?: string }[]>([]);
+  const [suggestions, setSuggestions] = useState<
+    {
+      type: "product" | "category";
+      name: string;
+      slug: string;
+      categoryName?: string;
+    }[]
+  >([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  
+
   // We need to fetch products client-side for suggestions
-  // In a real app, this would be an API call. 
+  // In a real app, this would be an API call.
   // Since we're using static JSON, we can just import it, but `getAllProducts` is in a file that imports JSON.
   // Next.js client components can import non-client files if they don't use server-only features.
   // `getAllProducts` is pure JS, so it's fine.
@@ -35,7 +46,10 @@ export default function SearchInput({ placeholder, className = "", autoFocus = f
   // Handle outside click to close suggestions
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
         setShowSuggestions(false);
       }
     }
@@ -52,29 +66,31 @@ export default function SearchInput({ placeholder, className = "", autoFocus = f
 
     const timer = setTimeout(() => {
       const q = query.toLowerCase();
-      
+
       // Filter Products
       const productMatches = allProducts
-        .filter(p => p.name.toLowerCase().includes(q))
-        .map(p => ({
-          type: 'product' as const,
+        .filter((p) => p.name.toLowerCase().includes(q))
+        .map((p) => ({
+          type: "product" as const,
           name: p.name,
           slug: p.slug,
           categoryName: p.category
         }));
 
       // Filter Categories
-      const categoryMatches = Array.from(new Set(allProducts.map(p => p.category)))
-        .filter(c => c.toLowerCase().includes(q))
-        .map(c => {
-           // Find a product with this category to get the slug (or regenerate it)
-           const p = allProducts.find(prod => prod.category === c);
-           return {
-             type: 'category' as const,
-             name: c,
-             slug: p?.categorySlug || '',
-             categoryName: undefined
-           };
+      const categoryMatches = Array.from(
+        new Set(allProducts.map((p) => p.category))
+      )
+        .filter((c) => c.toLowerCase().includes(q))
+        .map((c) => {
+          // Find a product with this category to get the slug (or regenerate it)
+          const p = allProducts.find((prod) => prod.category === c);
+          return {
+            type: "category" as const,
+            name: c,
+            slug: p?.categorySlug || "",
+            categoryName: undefined
+          };
         });
 
       // Combine and limit
@@ -110,10 +126,12 @@ export default function SearchInput({ placeholder, className = "", autoFocus = f
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowDown") {
       e.preventDefault();
-      setHighlightedIndex(prev => (prev < suggestions.length - 1 ? prev + 1 : prev));
+      setHighlightedIndex((prev) =>
+        prev < suggestions.length - 1 ? prev + 1 : prev
+      );
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
-      setHighlightedIndex(prev => (prev > 0 ? prev - 1 : -1));
+      setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : -1));
     } else if (e.key === "Enter") {
       if (highlightedIndex >= 0 && suggestions[highlightedIndex]) {
         e.preventDefault();
@@ -124,8 +142,8 @@ export default function SearchInput({ placeholder, className = "", autoFocus = f
     }
   };
 
-  const handleSuggestionClick = (suggestion: typeof suggestions[0]) => {
-    if (suggestion.type === 'product') {
+  const handleSuggestionClick = (suggestion: (typeof suggestions)[0]) => {
+    if (suggestion.type === "product") {
       router.push(`/medicines/${suggestion.slug}`);
     } else {
       router.push(`/categories/${suggestion.slug}`);
@@ -135,15 +153,19 @@ export default function SearchInput({ placeholder, className = "", autoFocus = f
   };
 
   // Helper to highlight matching text
-  const HighlightMatch = ({ text, match }: { text: string, match: string }) => {
-    const parts = text.split(new RegExp(`(${match})`, 'gi'));
+  const HighlightMatch = ({ text, match }: { text: string; match: string }) => {
+    const parts = text.split(new RegExp(`(${match})`, "gi"));
     return (
       <span>
-        {parts.map((part, i) => 
+        {parts.map((part, i) =>
           part.toLowerCase() === match.toLowerCase() ? (
-            <span key={i} className="font-bold text-gray-900">{part}</span>
+            <span key={i} className="font-bold text-gray-900">
+              {part}
+            </span>
           ) : (
-            <span key={i} className="text-gray-600">{part}</span>
+            <span key={i} className="text-gray-600">
+              {part}
+            </span>
           )
         )}
       </span>
@@ -200,11 +222,14 @@ export default function SearchInput({ placeholder, className = "", autoFocus = f
                     <span className="truncate">
                       <HighlightMatch text={suggestion.name} match={query} />
                     </span>
-                    {suggestion.type === 'product' && suggestion.categoryName && (
-                      <span className="text-xs text-gray-400 mt-0.5">in {suggestion.categoryName}</span>
-                    )}
+                    {suggestion.type === "product" &&
+                      suggestion.categoryName && (
+                        <span className="text-xs text-gray-400 mt-0.5">
+                          in {suggestion.categoryName}
+                        </span>
+                      )}
                   </div>
-                  {suggestion.type === 'category' && (
+                  {suggestion.type === "category" && (
                     <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">
                       Category
                     </span>

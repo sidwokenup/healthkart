@@ -3,8 +3,10 @@ const GOOGLE_SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL;
 if (!GOOGLE_SCRIPT_URL) {
   // In development, we might not have the env var set yet, so we can log a warning.
   // In production, this should ideally be a strict check, but to prevent build failures if the user forgot:
-  console.warn("NEXT_PUBLIC_GOOGLE_SCRIPT_URL is not defined. Google Sheets integration will not work.");
-} 
+  console.warn(
+    "NEXT_PUBLIC_GOOGLE_SCRIPT_URL is not defined. Google Sheets integration will not work."
+  );
+}
 
 export interface PopupLeadData {
   type: "popup";
@@ -49,11 +51,15 @@ export interface OrderData {
 
 type SheetData = PopupLeadData | ConsultationData | OrderData;
 
-export const submitToGoogleSheets = async (data: SheetData): Promise<{ success: boolean; message?: string }> => {
+export const submitToGoogleSheets = async (
+  data: SheetData
+): Promise<{ success: boolean; message?: string }> => {
   if (!GOOGLE_SCRIPT_URL) {
-    console.error("Google Sheets URL not configured. Please set NEXT_PUBLIC_GOOGLE_SCRIPT_URL environment variable.");
+    console.error(
+      "Google Sheets URL not configured. Please set NEXT_PUBLIC_GOOGLE_SCRIPT_URL environment variable."
+    );
     // Mock success for development if URL is not set, so the UI doesn't break
-    return { success: true, message: "Mock success (URL not set)" }; 
+    return { success: true, message: "Mock success (URL not set)" };
   }
 
   try {
@@ -61,9 +67,9 @@ export const submitToGoogleSheets = async (data: SheetData): Promise<{ success: 
       method: "POST",
       mode: "no-cors", // Important for Google Apps Script to avoid CORS errors
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
 
     // With no-cors, we can't check response.ok or get JSON

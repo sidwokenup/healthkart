@@ -1,11 +1,14 @@
 # Global UI Foundation Implementation Plan
 
 ## 1. Setup & Dependencies
+
 - Install `lucide-react` for icons (Cart, Menu, Search, User, etc.).
 - Update `styles/globals.css` to define the "Medical Blue" theme color (e.g., `#0ea5e9` or similar standard Tailwind blue).
 
 ## 2. Component Implementation
+
 ### Header (`components/Header.tsx`)
+
 - **Mobile View (< 768px)**:
   - Hamburger Menu (Left) - Toggle state for mobile menu.
   - Logo "HealthKart" (Center/Left).
@@ -20,6 +23,7 @@
   - Use `nav` for links.
 
 ### Footer (`components/Footer.tsx`)
+
 - **Layout**: Simple multi-column or centered layout depending on content density (keep minimal as requested).
 - **Content**:
   - Copyright text.
@@ -27,6 +31,7 @@
 - **Style**: Light gray background to separate from main content.
 
 ## 3. Global Layout & Styling
+
 - **Layout (`app/layout.tsx`)**:
   - Verify `flex-col` and `min-h-screen` to ensure footer stays at the bottom.
   - Apply global font smoothing and base text colors.
@@ -36,5 +41,6 @@
   - Apply "Medical Blue" for primary actions and branding.
 
 ## 4. Verification
+
 - Verify the build runs (`npm run dev`).
 - Check responsiveness on mobile and desktop viewports.
