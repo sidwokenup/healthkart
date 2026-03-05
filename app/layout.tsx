@@ -4,8 +4,10 @@ import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
 
 import { getAllCategories } from "@/lib/products";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
+  metadataBase: new URL("https://medsforpain.com"),
   title: "MedsForPain – Your Pharmacy Delivered",
   description:
     "Order medicines online with trusted delivery. Fast, secure, and reliable pharmacy services in the USA.",
