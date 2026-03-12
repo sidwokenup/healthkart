@@ -2,6 +2,7 @@ import { getProductBySlug, getProductsByCategory } from "@/lib/products";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import ProductDetailClient from "./ProductDetailClient";
+import { SEO } from "@/lib/seo";
 
 export async function generateMetadata({
   params
@@ -17,10 +18,32 @@ export async function generateMetadata({
     };
   }
 
+  const url = `${SEO.domain}/medicines/${slug}`;
+  const title = product.meta_title || `${product.name} | ${SEO.siteName}`;
+  const description =
+    product.meta_description || product.description.substring(0, 160);
+
   return {
-    title: product.meta_title || `${product.name} - MedsForPain`,
-    description:
-      product.meta_description || product.description.substring(0, 160)
+    title,
+    description,
+    alternates: {
+      canonical: url
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: SEO.siteName,
+      images: product.images,
+      type: "website"
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: product.images,
+      creator: SEO.twitterHandle
+    }
   };
 }
 
@@ -47,25 +70,18 @@ export default async function MedicineDetailPage({
     name: product.name,
     image: product.images,
     description: product.meta_description || product.description,
-    sku: product.slug,
     brand: {
       "@type": "Brand",
-      name: product.brand || "Generic"
+      name: product.brand_or_generic || SEO.siteName
     },
     offers: {
       "@type": "Offer",
-      url: `https://medsforpain.com/medicines/${product.slug}`,
-      priceCurrency: "USD",
+      url: `${SEO.domain}/medicines/${product.slug}`,
+      priceCurrency: "INR",
       price: product.price,
-      availability: product.inStock
+      availability: product.availability === "In Stock"
         ? "https://schema.org/InStock"
-        : "https://schema.org/OutOfStock",
-      itemCondition: "https://schema.org/NewCondition"
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: product.rating || 4.5,
-      reviewCount: product.reviews_count || 1
+        : "https://schema.org/OutOfStock"
     }
   };
 

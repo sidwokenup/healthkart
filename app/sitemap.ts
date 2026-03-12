@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next';
 import { getAllProducts, getAllCategories } from '@/lib/products';
+import { SEO } from '@/lib/seo';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://medsforpain.com'; // Replace with your actual domain
+  const baseUrl = SEO.domain;
 
   // Static routes
   const routes = [

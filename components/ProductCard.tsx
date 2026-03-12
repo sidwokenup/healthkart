@@ -76,7 +76,9 @@ export default function ProductCard({
         href={`/medicines/${slug}`}
         className="absolute inset-0 z-0"
         aria-label={`View ${name}`}
-      />
+      >
+        <span className="sr-only">{name}</span>
+      </Link>
 
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 p-4 flex flex-col h-full relative z-10 pointer-events-none">
         {/* Badges - Make pointer-events-auto for interactive elements inside */}

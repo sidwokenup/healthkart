@@ -35,7 +35,10 @@ export const metadata: Metadata = {
     description:
       "Order medicines online with trusted delivery. Fast, secure, and reliable pharmacy services in the USA.",
     images: ["/opengraph-image.png"]
-  }
+  },
+  icons: {
+    icon: "/favicon.ico.png",
+  },
 };
 
 export const viewport = {

@@ -24,6 +24,8 @@ export interface Product {
   rating?: number;
   reviews_count?: number;
   isPopular?: boolean;
+  brand_or_generic?: string;
+  availability?: string;
   quantityOptions: { label: string; price: number }[];
 }
 
@@ -141,6 +143,8 @@ export const getAllProducts = (): Product[] => {
               ],
         dosage: p.dosage,
         brand: p.brand_or_generic || "Generic",
+        brand_or_generic: p.brand_or_generic,
+        availability: p.availability,
         inStock: true,
         discount: "20% OFF",
         uses: p.uses || "",
