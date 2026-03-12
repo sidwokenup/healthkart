@@ -16,6 +16,7 @@ import { Product } from "@/lib/products";
 import { useCart } from "@/context/CartContext";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function ProductDetailClient({
   product,
@@ -24,7 +25,8 @@ export default function ProductDetailClient({
   product: Product;
   relatedProducts: Product[];
 }) {
-  const { addToCart } = useCart();
+  const router = useRouter();
+  const { addToCart, setInstantOrder } = useCart();
   const [selectedQuantityOption, setSelectedQuantityOption] = useState(
     product.quantityOptions[0] || { label: "1 Unit", price: product.price }
   );
@@ -48,16 +50,51 @@ export default function ProductDetailClient({
     if (product.inStock) {
       const cartItemSlug = `${product.slug}-${selectedQuantityOption.label.replace(/\s+/g, "-").toLowerCase()}`;
 
-      for (let i = 0; i < packCount; i++) {
-        addToCart({
-          slug: cartItemSlug,
-          name: `${product.name} (${selectedQuantityOption.label})`,
-          price: selectedQuantityOption.price,
-          originalPrice: product.originalPrice,
-          dosage: product.dosage,
-          image: product.images[0]
-        });
+      addToCart({
+        slug: cartItemSlug,
+        name: `${product.name} (${selectedQuantityOption.label})`,
+        price: selectedQuantityOption.price,
+        originalPrice: product.originalPrice,
+        dosage: product.dosage,
+        image: product.images[0]
+      });
+      
+      // If user selected multiple packs, update quantity
+      if (packCount > 1) {
+        // We already added 1, so add packCount - 1 more
+        // Note: This logic assumes addToCart increments by 1. 
+        // Better to update quantity directly if addToCart supported it, 
+        // but current implementation is loop-based or simple add.
+        // Let's rely on the loop for simplicity if updateQuantity isn't exposed here nicely, 
+        // OR better: call addToCart packCount times? 
+        // The previous implementation loop was fine, but let's optimize to single add if possible.
+        // Actually, previous implementation loop:
+        for (let i = 1; i < packCount; i++) {
+           addToCart({
+            slug: cartItemSlug,
+            name: `${product.name} (${selectedQuantityOption.label})`,
+            price: selectedQuantityOption.price,
+            originalPrice: product.originalPrice,
+            dosage: product.dosage,
+            image: product.images[0]
+          });
+        }
       }
+    }
+  };
+
+  const handleBuyNow = () => {
+    if (product.inStock) {
+      setInstantOrder({
+        slug: product.slug,
+        name: `${product.name} (${selectedQuantityOption.label})`,
+        price: selectedQuantityOption.price,
+        originalPrice: product.originalPrice,
+        dosage: product.dosage,
+        quantity: packCount,
+        image: product.images[0]
+      });
+      router.push("/checkout");
     }
   };
 
@@ -229,7 +266,7 @@ export default function ProductDetailClient({
                     </button>
                   </div>
 
-                  <div className="flex-1">
+                  <div className="flex-1 space-y-3">
                     <button
                       onClick={handleAddToCart}
                       disabled={!product.inStock}
@@ -241,6 +278,15 @@ export default function ProductDetailClient({
                     >
                       {product.inStock ? "Add to Cart" : "Out of Stock"}
                     </button>
+
+                    {product.inStock && (
+                      <button
+                        onClick={handleBuyNow}
+                        className="w-full font-bold py-3.5 px-6 rounded-xl transition-colors shadow-md bg-orange-500 hover:bg-orange-600 text-white"
+                      >
+                        Buy Now
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

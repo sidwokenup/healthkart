@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/cart', '/checkout', '/order-success'],
+      disallow: [],
     },
     sitemap: 'https://medsforpain.com/sitemap.xml',
   };

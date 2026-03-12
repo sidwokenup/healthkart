@@ -12,12 +12,28 @@ interface CartItem {
   image: string;
 }
 
+interface InstantOrderItem {
+  slug: string;
+  name: string;
+  price: number;
+  originalPrice?: number;
+  dosage: string;
+  quantity: number;
+  image: string;
+}
+
 interface CartContextType {
   items: CartItem[];
+  instantOrderItem: InstantOrderItem | null;
   addToCart: (product: Omit<CartItem, "quantity">) => void;
   removeFromCart: (slug: string) => void;
   updateQuantity: (slug: string, delta: number) => void;
   clearCart: () => void;
+  setInstantOrder: (item: InstantOrderItem) => void;
+  clearInstantOrder: () => void;
+  isDrawerOpen: boolean;
+  openDrawer: () => void;
+  closeDrawer: () => void;
   cartCount: number;
   cartTotal: number;
 }
@@ -26,6 +42,11 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [instantOrderItem, setInstantOrderItem] = useState<InstantOrderItem | null>(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const openDrawer = () => setIsDrawerOpen(true);
+  const closeDrawer = () => setIsDrawerOpen(false);
 
   const addToCart = (product: Omit<CartItem, "quantity">) => {
     setItems((prev) => {
@@ -39,6 +60,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
       return [...prev, { ...product, quantity: 1 }];
     });
+    openDrawer();
   };
 
   const removeFromCart = (slug: string) => {
@@ -61,6 +83,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setItems([]);
   };
 
+  const setInstantOrder = (item: InstantOrderItem) => {
+    setInstantOrderItem(item);
+  };
+
+  const clearInstantOrder = () => {
+    setInstantOrderItem(null);
+  };
+
   const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
   const cartTotal = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -71,10 +101,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
     <CartContext.Provider
       value={{
         items,
+        instantOrderItem,
         addToCart,
         removeFromCart,
         updateQuantity,
         clearCart,
+        setInstantOrder,
+        clearInstantOrder,
+        isDrawerOpen,
+        openDrawer,
+        closeDrawer,
         cartCount,
         cartTotal
       }}

@@ -71,7 +71,14 @@ const US_STATES = [
 import { useRouter } from "next/navigation";
 
 export default function CheckoutPage() {
-  const { cartCount, cartTotal, items: cart, clearCart } = useCart();
+  const {
+    cartCount,
+    cartTotal,
+    items: cart,
+    clearCart,
+    instantOrderItem,
+    clearInstantOrder
+  } = useCart();
   const router = useRouter();
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
   const [locationError, setLocationError] = useState("");
@@ -266,7 +273,7 @@ export default function CheckoutPage() {
       return;
     }
 
-    if (cartCount === 0) {
+    if (cartCount === 0 && !instantOrderItem) {
       alert("Your cart is empty.");
       return;
     }
@@ -275,6 +282,26 @@ export default function CheckoutPage() {
 
     // Generate a simple order ID
     const orderId = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+
+    const itemsToOrder = instantOrderItem
+      ? [
+          {
+            productName: instantOrderItem.name,
+            quantity: instantOrderItem.quantity,
+            unitPrice: instantOrderItem.price,
+            totalPrice: instantOrderItem.price * instantOrderItem.quantity
+          }
+        ]
+      : cart.map((item) => ({
+          productName: item.name,
+          quantity: item.quantity,
+          unitPrice: item.price,
+          totalPrice: item.price * item.quantity
+        }));
+
+    const finalTotal = instantOrderItem
+      ? instantOrderItem.price * instantOrderItem.quantity
+      : cartTotal;
 
     const orderData = {
       type: "order" as const,
@@ -291,13 +318,8 @@ export default function CheckoutPage() {
           formData.state === "Other" ? formData.customState : formData.state,
         zip: formData.zip
       },
-      items: cart.map((item) => ({
-        productName: item.name,
-        quantity: item.quantity,
-        unitPrice: item.price,
-        totalPrice: item.price * item.quantity
-      })),
-      orderTotal: cartTotal
+      items: itemsToOrder,
+      orderTotal: finalTotal
     };
 
     const result = await submitToGoogleSheets(orderData);
@@ -305,6 +327,7 @@ export default function CheckoutPage() {
     if (result.success) {
       // Clear cart and redirect to success page
       clearCart();
+      clearInstantOrder();
       router.push("/order-success");
     } else {
       alert("Failed to place order. Please try again.");
@@ -555,35 +578,109 @@ export default function CheckoutPage() {
                 Order Summary
               </h2>
 
-              <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 mb-4 flex items-start">
-                <ShieldCheck
-                  size={18}
-                  className="text-primary mt-0.5 mr-2 flex-shrink-0"
-                />
-                <p className="text-xs text-blue-800">
-                  No online payment required. Our team will call you to confirm
-                  details before delivery.
+              <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 mb-6">
+                <div className="flex items-start mb-2">
+                  <ShieldCheck
+                    size={18}
+                    className="text-primary mt-0.5 mr-2 flex-shrink-0"
+                  />
+                  <p className="text-xs text-blue-800 font-medium">
+                    Verified Medicine Supplier
+                  </p>
+                </div>
+                <ul className="text-xs text-blue-700 space-y-1 ml-6 list-disc">
+                  <li>Secure order processing</li>
+                  <li>Doctor consultation available</li>
+                </ul>
+                <p className="text-xs text-gray-500 mt-2 border-t border-blue-100 pt-2">
+                  Our team will contact you to confirm your order before dispatch.
                 </p>
               </div>
 
+              <div className="space-y-4 mb-6">
+                {instantOrderItem ? (
+                  // Instant Order Item
+                  <div className="flex gap-3 py-2 border-b border-gray-100">
+                    <div className="w-16 h-16 flex-shrink-0 bg-gray-50 rounded-lg border border-gray-100 p-1">
+                      <img
+                        src={instantOrderItem.image}
+                        alt={instantOrderItem.name}
+                        className="w-full h-full object-contain mix-blend-multiply"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-sm font-semibold text-gray-900 truncate">
+                        {instantOrderItem.name}
+                      </h3>
+                      <p className="text-xs text-gray-500 mt-0.5">
+                        {instantOrderItem.dosage &&
+                          `Dosage: ${instantOrderItem.dosage}`}
+                      </p>
+                      <div className="flex justify-between items-center mt-1">
+                        <p className="text-xs text-gray-600">
+                          Qty: {instantOrderItem.quantity} × $
+                          {instantOrderItem.price}
+                        </p>
+                        <p className="text-sm font-medium text-gray-900">
+                          ${instantOrderItem.price * instantOrderItem.quantity}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  // Cart Items
+                  cart.map((item) => (
+                    <div
+                      key={item.slug}
+                      className="flex gap-3 py-2 border-b border-gray-100 last:border-0"
+                    >
+                      <div className="w-16 h-16 flex-shrink-0 bg-gray-50 rounded-lg border border-gray-100 p-1">
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-full h-full object-contain mix-blend-multiply"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm font-semibold text-gray-900 truncate">
+                          {item.name}
+                        </h3>
+                        <p className="text-xs text-gray-500 mt-0.5">
+                          {item.dosage && `Dosage: ${item.dosage}`}
+                        </p>
+                        <div className="flex justify-between items-center mt-1">
+                          <p className="text-xs text-gray-600">
+                            Qty: {item.quantity} × ${item.price}
+                          </p>
+                          <p className="text-sm font-medium text-gray-900">
+                            ${item.price * item.quantity}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+
               <div className="space-y-3 mb-6">
-                <div className="flex justify-between text-gray-600">
-                  <span>Items ({cartCount})</span>
-                  <span>${cartTotal}</span>
-                </div>
                 <div className="flex justify-between text-gray-600">
                   <span>Delivery Fee</span>
                   <span className="text-green-600 font-medium">Free</span>
                 </div>
                 <div className="border-t border-gray-100 my-2 pt-2 flex justify-between font-bold text-gray-900 text-lg">
                   <span>Total Payable</span>
-                  <span>${cartTotal}</span>
+                  <span>
+                    $
+                    {instantOrderItem
+                      ? instantOrderItem.price * instantOrderItem.quantity
+                      : cartTotal}
+                  </span>
                 </div>
               </div>
 
               <button
                 onClick={handlePlaceOrder}
-                disabled={isPlacingOrder || cartCount === 0}
+                disabled={isPlacingOrder || (cartCount === 0 && !instantOrderItem)}
                 className="w-full bg-primary text-white font-bold py-3.5 px-4 rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-100 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isPlacingOrder ? (

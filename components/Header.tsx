@@ -133,6 +133,12 @@ export default function Header({ categories = [] }: HeaderProps) {
                 Home
               </Link>
               <Link
+                href="/contact"
+                className="text-gray-600 hover:text-primary font-medium flex items-center h-full"
+              >
+                Contact
+              </Link>
+              <Link
                 href="/shipment"
                 className="text-gray-600 hover:text-primary font-medium flex items-center h-full"
               >
@@ -245,6 +251,12 @@ export default function Header({ categories = [] }: HeaderProps) {
                 className="block py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-primary rounded-md px-2"
               >
                 Home
+              </Link>
+              <Link
+                href="/contact"
+                className="block py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-primary rounded-md px-2"
+              >
+                Contact
               </Link>
               <Link
                 href="/shipment"

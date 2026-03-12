@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
+import CartDrawer from "@/components/CartDrawer";
 
 import { getAllCategories } from "@/lib/products";
 import { Metadata } from "next";
@@ -71,9 +72,13 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className="min-h-screen flex flex-col antialiased">
+      <body
+        className="min-h-screen flex flex-col antialiased"
+        suppressHydrationWarning={true}
+      >
         <CartProvider>
           <Header categories={categories} />
+          <CartDrawer />
           <main className="flex-1 w-full">{children}</main>
           <Footer />
           <WhatsAppChat />

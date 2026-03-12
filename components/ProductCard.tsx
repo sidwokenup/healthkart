@@ -46,6 +46,7 @@ export default function ProductCard({
         dosage,
         image: images[0]
       });
+      // The drawer will open automatically due to context update
     }
   };
 
