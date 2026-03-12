@@ -1,10 +1,10 @@
 export const SEO = {
-  siteName: "MedsForMain",
-  domain: "https://www.medsformain.com",
+  siteName: "MedsForPain",
+  domain: "https://medsforpain.com",
 
-  defaultTitle: "MedsForMain | Buy Medicines Online",
+  defaultTitle: "MedsForPain | Buy Medicines Online",
   defaultDescription:
-    "Buy genuine medicines and healthcare products online at MedsForMain with trusted pharmacy support.",
+    "Buy genuine medicines and healthcare products online at MedsForPain with trusted pharmacy support.",
 
-  twitterHandle: "@medsformain",
+  twitterHandle: "@medsforpain",
 };

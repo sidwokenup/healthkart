@@ -6,9 +6,9 @@ export async function submitIndexNow(urls: string[]) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        host: "www.medsformain.com",
+        host: "medsforpain.com",
         key: "4c2b9f8d1e3a4b5c6d7e8f9a0b1c2d3e",
-        keyLocation: "https://www.medsformain.com/indexnow-key.txt",
+        keyLocation: "https://medsforpain.com/indexnow-key.txt",
         urlList: urls,
       }),
     });
