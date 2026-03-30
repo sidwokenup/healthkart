@@ -186,7 +186,12 @@ export default function ProductDetailClient({
               <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
                 {product.name}
               </h1>
-              <p className="text-gray-600 mb-3 text-sm">{product.dosage}</p>
+              <p className="text-gray-600 mb-1 text-sm">
+                <span className="font-semibold text-gray-800">Brand:</span> {product.brand}
+              </p>
+              <p className="text-gray-600 mb-3 text-sm">
+                <span className="font-semibold text-gray-800">Dosage:</span> {product.dosage}
+              </p>
 
               <div className="flex items-center gap-4 mb-4">
                 <div className="flex items-center bg-green-600 text-white px-2 py-0.5 rounded text-sm font-bold">

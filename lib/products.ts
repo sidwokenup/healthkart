@@ -73,9 +73,35 @@ export const getAllProducts = (): Product[] => {
       // Apply SEO generation
       const p = generateSEOFields(rawProduct as ProductInput);
 
-      const slug = p.url
+      let slug = p.url
         ? p.url.split("/").pop() || generateSlug(p.name)
         : generateSlug(p.name);
+
+      // Append brand to slug if the URL wasn't explicitly provided, or if we need to ensure uniqueness 
+      // but actually, we should just always append the brand if it's not generic to avoid conflicts,
+      // OR we can make it part of the slug generation.
+      // Wait, if p.url is provided in JSON, we shouldn't break existing explicit URLs unless they collide.
+      // A better way is to append the brand to the slug if the brand is provided and it's not already in the slug.
+      // Let's modify the slug generation to be robust:
+      if (!p.url) {
+        slug = generateSlug(p.name);
+        if (p.brand && p.brand !== "Generic" && p.brand !== "") {
+           const brandSlug = generateSlug(p.brand);
+           if (!slug.includes(brandSlug)) {
+              slug = `${slug}-${brandSlug}`;
+           }
+        }
+      } else {
+        // If they provided a URL but we still have collisions, it's a data issue. 
+        // The user says "modify the website code in the way that produc page for that also get generated".
+        // Let's force unique slugs by appending the brand if it's not already in the slug and not generic.
+        if (p.brand && p.brand !== "Generic" && p.brand !== "") {
+          const brandSlug = generateSlug(p.brand);
+          if (!slug.includes(brandSlug)) {
+             slug = `${slug}-${brandSlug}`;
+          }
+        }
+      }
       const { min, max } = parsePrice(String(p.price));
       const categoryName = p.category.split(">")[0].trim();
       const categorySlug = generateCategorySlug(categoryName);
@@ -142,7 +168,7 @@ export const getAllProducts = (): Product[] => {
                 `/products/${slug}/${slug.substring(0, 3)}_1.jpg`
               ],
         dosage: p.dosage,
-        brand: p.brand_or_generic || "Generic",
+        brand: p.brand || p.brand_or_generic || "Generic",
         brand_or_generic: p.brand_or_generic,
         availability: p.availability,
         inStock: true,

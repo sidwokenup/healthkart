@@ -14,6 +14,7 @@ interface ProductProps {
   discount?: string;
   category: string;
   categorySlug: string; // Added categorySlug
+  brand: string; // Added brand
   inStock: boolean;
   images: string[];
 }
@@ -27,6 +28,7 @@ export default function ProductCard({
   discount,
   category,
   categorySlug,
+  brand,
   inStock,
   images
 }: ProductProps) {
@@ -83,18 +85,21 @@ export default function ProductCard({
 
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 p-4 flex flex-col h-full relative z-10 pointer-events-none">
         {/* Badges - Make pointer-events-auto for interactive elements inside */}
-        <div className="absolute top-3 left-3 z-20 flex flex-col gap-1 pointer-events-auto">
+        <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5 pointer-events-auto">
           {discount && (
-            <span className="bg-green-100 text-green-800 text-xs font-bold px-2.5 py-1 rounded-full w-fit">
+            <span className="bg-green-100 text-green-800 text-xs font-bold px-2.5 py-1 rounded-full w-fit shadow-sm">
               {discount}
             </span>
           )}
           <Link
             href={`/categories/${categorySlug}`}
-            className="bg-blue-50 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-full w-fit hover:bg-blue-100 transition-colors"
+            className="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-1 rounded-full w-fit hover:bg-blue-200 transition-colors shadow-sm"
           >
             {category}
           </Link>
+          <span className="bg-purple-100 text-purple-800 text-xs font-bold px-2.5 py-1 rounded-full w-fit border border-purple-200 shadow-sm">
+            {brand}
+          </span>
         </div>
 
         {/* Stock Status */}
@@ -124,6 +129,7 @@ export default function ProductCard({
           <h3 className="font-bold text-gray-900 line-clamp-2 mb-1 text-base leading-snug group-hover:text-primary transition-colors">
             {name}
           </h3>
+          <p className="text-xs text-gray-500 mb-1 line-clamp-1">by {brand}</p>
           <p className="text-sm text-gray-500 mb-4">{dosage}</p>
 
           <div className="mt-auto flex items-center justify-between pointer-events-auto">
