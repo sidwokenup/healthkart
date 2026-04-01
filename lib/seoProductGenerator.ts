@@ -12,6 +12,8 @@ export interface ProductInput {
   faq?: string;
   image_alt?: string;
   images?: string[];
+  price_180?: string | number;
+  price_360?: string | number;
   [key: string]: any;
 }
 

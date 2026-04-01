@@ -21,12 +21,14 @@ export default function CategoryGrid() {
       case "anti-anxiety":
       case "anxiety":
         return "/products/antianxiety.png";
+      case "migraine":
+        return "/products/migraine.png";
       default:
         // Try to match based on common slug patterns if exact match fails
         if (slug.includes("men") && slug.includes("health"))
           return "/products/menshealth.png";
-        if (slug.includes("weight") && slug.includes("loss"))
-          return "/products/weightloss.png";
+        if (slug.includes("migraine"))
+          return "/products/migraine.png";
         return null;
     }
   };

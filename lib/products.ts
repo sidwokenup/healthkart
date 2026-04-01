@@ -116,33 +116,43 @@ export const getAllProducts = (): Product[] => {
       ) {
         quantityOptions = p.quantityOptions;
       } else {
-        // Simulate quantity options based on price range
-        // New Logic: 90 Pills, 180 Pills, 360 Pills
-        // Logic:
-        // - 90 Pills: Uses the "min" price from the JSON (assuming JSON price is for base unit)
-        // - 180 Pills: 2x base price with 10% discount
-        // - 360 Pills: 4x base price with 20% discount
-
-        const basePrice = min > 0 ? min : 99.99; // Fallback if no price found
-
-        quantityOptions = [
-          { label: "90 Pills", price: basePrice },
-          {
-            label: "180 Pills",
-            price: Math.round(basePrice * 2 * 100) / 100
-          },
-          {
-            label: "360 Pills",
-            price: Math.round(basePrice * 4 * 100) / 100
+        // Dynamic quantity options based on price_X fields in JSON
+        // If the product has "price_30": "300", we generate { label: "30 Pills", price: 300 }
+        
+        const dynamicOptions: { label: string; price: number; quantity: number }[] = [];
+        
+        // Always add the base price as "90 Pills" if it exists, UNLESS price_90 is explicitly defined
+        const basePrice = min > 0 ? min : 99.99;
+        if (!("price_90" in p)) {
+          dynamicOptions.push({ label: "90 Pills", price: basePrice, quantity: 90 });
+        }
+        
+        Object.keys(p).forEach(key => {
+          if (key.startsWith('price_')) {
+            const quantityStr = key.replace('price_', '');
+            const quantity = parseInt(quantityStr);
+            if (!isNaN(quantity)) {
+              const priceVal = parseFloat(String((p as any)[key]).replace(/[₹$,\s]/g, ""));
+              if (!isNaN(priceVal)) {
+                dynamicOptions.push({
+                  label: `${quantity} Pills`,
+                  price: priceVal,
+                  quantity
+                });
+              }
+            }
           }
-        ];
+        });
 
-        if (min === max && min > 0) {
-          // Keep generated quantity options even if price is fixed,
-          // because we are now generating 90/180/360 options from the base price.
-          // The previous logic was forcing "Standard Pack" which hides the pill options.
-          // quantityOptions.length = 0;
-          // quantityOptions.push({ label: "Standard Pack", price: min });
+        // If no dynamic options found, fallback to just the base price
+        if (dynamicOptions.length === 0) {
+          quantityOptions = [
+            { label: "90 Pills", price: basePrice }
+          ];
+        } else {
+          // Sort by quantity ascending
+          dynamicOptions.sort((a, b) => a.quantity - b.quantity);
+          quantityOptions = dynamicOptions.map(opt => ({ label: opt.label, price: opt.price }));
         }
       }
 
@@ -201,7 +211,7 @@ export const getAllCategories = (): { name: string; slug: string }[] => {
   const categories = new Map<string, string>();
 
   // Define custom sort order for categories
-  const categoryOrder = ["Pain Relief", "ADHD", "Anti-Anxiety", "Weight Loss"];
+  const categoryOrder = ["Pain Relief", "ADHD", "Anti-Anxiety", "Migraine"];
 
   products.forEach((p) => {
     if (!categories.has(p.categorySlug)) {
