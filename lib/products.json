@@ -4,8 +4,8 @@
     "name": "Tramadol 100mg",
     "brand": "Citra",
     "category": "Pain Relief",
-    "price": "299",
-    "price_180": "500",
+    "price_180": "399",
+    "price_360": "699",
     "sku": "",
     "dosage": "100mg",
     "active_ingredients": "",
@@ -30,8 +30,8 @@
     "faq": "<h3>Tramadol 100mg used for?</h3>\n<p>Tramadol 100mg is used for treating moderate to severe pain and improving comfort in patients suffering from chronic pain conditions.</p>\n<h3>How long does Tramadol 100mg take to work?</h3>\n<p>Most pain relief medications start working within 30 to 60 minutes after consumption.</p>\n<h3>What are the side effects of Tramadol 100mg?</h3>\n<p>Common side effects may include dizziness, nausea, drowsiness and headache.</p>"
   },
   {
-    "url": "/sleeping-pills/ambiens-10mg-belbien",
-    "name": "Ambiens 10mg",
+    "url": "/sleeping-pills/ambien-10mg-belbien",
+    "name": "Ambien 10mg",
     "brand": "belbien",
     "category": "Sleeping Pills",
     "price": "900",
@@ -44,7 +44,7 @@
     "reviews_count": "50",
     "availability": "In Stock",
     "images": [
-      "/products/ambien/ambiensl.jpg"
+      "/products/belbien.jpeg"
     ],
     "description": "Ambiens 10mg tablet is a medication commonly used to treat insomnia and other sleep disorders. It works by slowing down activity in the brain to allow for better sleep.\n\nThis medicine is often prescribed for short-term management of sleep difficulties.",
     "risks": "",
@@ -60,8 +60,8 @@
     "price_180": "1800"
   },
   {
-    "url": "/sleeping-pills/ambiens-10mg-zoltrate",
-    "name": "Ambiens 10mg",
+    "url": "/sleeping-pills/ambien-10mg-zoltrate",
+    "name": "Ambien 10mg",
     "brand": "zoltrate",
     "category": "Sleeping Pills",
     "price": "400",
@@ -87,14 +87,14 @@
     "uses": "Ambiens 10mg is commonly used for:\n<ul>\n<li>Short-term treatment of insomnia</li>\n<li>Improving sleep quality</li>\n<li>Reducing sleep onset latency</li>\n<li>Managing sleep maintenance disorders</li>\n</ul>",
     "image_alt": "Ambiens 10mg tablet sleeping aid medicine",
     "faq": "<h3>What is Ambiens 10mg used for?</h3>\n<p>Ambiens 10mg is used for treating insomnia and helping patients fall asleep faster and stay asleep longer.</p>\n<h3>How long does Ambiens 10mg take to work?</h3>\n<p>Most sleep medications start working within 30 to 60 minutes. It is recommended to take it right before bedtime.</p>\n<h3>Can Ambiens 10mg cause addiction?</h3>\n<p>Some sleep medications can be habit-forming if used for long periods. Use exactly as prescribed by your doctor.</p>",
-    "price_180": "800"
+    "price_180": "799",
+    "price_360": "1299"
   },
   {
-    "url": "/pain-relief/soma350mg-painosomas",
+    "url": "/pain-relief/soma350mg-habpharma",
     "name": "Soma 350mg",
-    "brand": "painosomas",
+    "brand": "Habpharma",
     "category": "Pain Relief",
-    "price": "349",
     "sku": "",
     "dosage": "350mg",
     "active_ingredients": "",
@@ -117,14 +117,14 @@
     "uses": "Soma 350mg is commonly used for:\n<ul>\n<li>Relief from moderate pain</li>\n<li>Muscle pain treatment</li>\n<li>Injury related pain relief</li>\n<li>Post surgical pain management</li>\n</ul>",
     "image_alt": "Soma 350mg tablet pain relief medicine",
     "faq": "<h3>What is Soma 350mg used for?</h3>\n<p>Soma 350mg is used for treating moderate to severe pain and improving comfort in patients suffering from chronic pain conditions.</p>\n<h3>How long does Soma 350mg take to work?</h3>\n<p>Most pain relief medications start working within 30 to 60 minutes after consumption.</p>\n<h3>What are the side effects of Soma 350mg?</h3>\n<p>Common side effects may include dizziness, nausea, drowsiness and headache.</p>",
-    "price_180": "600"
+    "price_180": "399",
+    "price_360": "559"
   },
   {
-    "url": "/pain-relief/tapentadol100mg-aspasol",
+    "url": "/pain-relief/tapentadol100mg-aspadol",
     "name": "Tapentadol 100mg",
-    "brand": "Aspasol",
+    "brand": "Aspadol",
     "category": "Pain Relief",
-    "price": "349",
     "sku": "",
     "dosage": "100mg",
     "active_ingredients": "",
@@ -147,14 +147,15 @@
     "uses": "Tapentadol 100mg is commonly used for:\n<ul>\n<li>Relief from moderate pain</li>\n<li>Muscle pain treatment</li>\n<li>Injury related pain relief</li>\n<li>Post surgical pain management</li>\n</ul>",
     "image_alt": "Tapentadol 100mg tablet pain relief medicine",
     "faq": "<h3>What is Tapentadol 100mg used for?</h3>\n<p>Tapentadol 100mg is used for treating moderate to severe pain and improving comfort in patients suffering from chronic pain conditions.</p>\n<h3>How long does Tapentadol 100mg take to work?</h3>\n<p>Most pain relief medications start working within 30 to 60 minutes after consumption.</p>\n<h3>What are the side effects of Tapentadol 100mg?</h3>\n<p>Common side effects may include dizziness, nausea, drowsiness and headache.</p>",
-    "price_180": "599"
+    "price_180": "349",
+    "price_360": "699",
+    "price_720": "1049"
   },
   {
-    "url": "/pain-relief/soma500mg-soma500mg",
+    "url": "/pain-relief/soma500mg-habpharma",
     "name": "Soma 500mg",
-    "brand": "soma500mg",
+    "brand": "Habpharma",
     "category": "Pain Relief",
-    "price": "400",
     "sku": "",
     "dosage": "500mg",
     "active_ingredients": "",
@@ -177,14 +178,15 @@
     "uses": "Soma 500mg is commonly used for:\n<ul>\n<li>Relief from moderate pain</li>\n<li>Muscle pain treatment</li>\n<li>Injury related pain relief</li>\n<li>Post surgical pain management</li>\n</ul>",
     "image_alt": "Soma 500mg tablet pain relief medicine",
     "faq": "<h3>What is Soma 500mg used for?</h3>\n<p>Soma 500mg is used for treating moderate to severe pain and improving comfort in patients suffering from chronic pain conditions.</p>\n<h3>How long does Soma 500mg take to work?</h3>\n<p>Most pain relief medications start working within 30 to 60 minutes after consumption.</p>\n<h3>What are the side effects of Soma 500mg?</h3>\n<p>Common side effects may include dizziness, nausea, drowsiness and headache.</p>",
-    "price_180": "600"
+    "price_180": "399",
+    "price_360": "599"
   },
   {
-    "url": "/anti-anxiety/xnax1mg-ksalol",
-    "name": "xnax 1mg",
+    "url": "/anti-anxiety/xanax1mg-ksalol",
+    "name": "Xanax 1mg",
     "brand": "ksalol",
     "category": "Anti-Anxiety",
-    "price": "299",
+    "price": "800",
     "sku": "",
     "dosage": "1mg",
     "active_ingredients": "",
@@ -194,27 +196,27 @@
     "reviews_count": "50",
     "availability": "In Stock",
     "images": [
-      "/products/genericxanax1mg/gen_1.jpg"
+      "/products/ksalol.jpeg"
     ],
-    "description": "xnax 1mg tablet is a medication commonly used to treat anxiety disorders, panic attacks, and stress-related conditions. It works by calming the brain and nerves.\n\nThis medicine belongs to a class of drugs known as benzodiazepines or anxiolytics, which help in reducing excessive worry and nervousness.",
+    "description": "xanax 1mg tablet is a medication commonly used to treat anxiety disorders, panic attacks, and stress-related conditions. It works by calming the brain and nerves.\n\nThis medicine belongs to a class of drugs known as benzodiazepines or anxiolytics, which help in reducing excessive worry and nervousness.",
     "risks": "",
     "side_effects": "Common side effects of xnax 1mg may include:\n<ul>\n<li>Drowsiness</li>\n<li>Dizziness</li>\n<li>Fatigue</li>\n<li>Difficulty concentrating</li>\n<li>Dry mouth</li>\n</ul>\n<p>If severe side effects occur, consult a healthcare professional immediately.</p>",
-    "precautions": "xnax 1mg should be used with caution:\n<ul>\n<li>Avoid alcohol while taking this medication</li>\n<li>Do not drive or operate heavy machinery if you feel drowsy</li>\n<li>Consult a doctor if you have a history of substance abuse</li>\n<li>Not recommended during pregnancy without medical advice</li>\n</ul>",
+    "precautions": "xanax 1mg should be used with caution:\n<ul>\n<li>Avoid alcohol while taking this medication</li>\n<li>Do not drive or operate heavy machinery if you feel drowsy</li>\n<li>Consult a doctor if you have a history of substance abuse</li>\n<li>Not recommended during pregnancy without medical advice</li>\n</ul>",
     "additional_details": "",
     "meta_description": "xnax 1mg tablet is commonly used to treat anxiety disorders and panic attacks. Learn about its uses, dosage, side effects, precautions and safety information.",
     "isPopular": true,
-    "meta_title": "xnax 1mg Tablet – Uses, Dosage, Side Effects | MedsForPain",
-    "uses": "xnax 1mg is commonly used for:\n<ul>\n<li>Generalized Anxiety Disorder (GAD)</li>\n<li>Panic disorders with or without agoraphobia</li>\n<li>Short-term relief of anxiety symptoms</li>\n<li>Anxiety associated with depression</li>\n</ul>",
-    "image_alt": "xnax 1mg tablet anti-anxiety medicine",
-    "faq": "<h3>What is xnax 1mg used for?</h3>\n<p>xnax 1mg is used to treat anxiety disorders and panic attacks by calming the nervous system.</p>\n<h3>How long does xnax 1mg take to work?</h3>\n<p>This medication usually starts working within 30 to 60 minutes after administration.</p>\n<h3>Can xnax 1mg be taken long-term?</h3>\n<p>Long-term use may lead to dependence. It is generally recommended for short-term use under medical supervision.</p>",
-    "price_180": "500"
+    "meta_title": "xanax 1mg Tablet – Uses, Dosage, Side Effects | MedsForPain",
+    "uses": "xanax 1mg is commonly used for:\n<ul>\n<li>Generalized Anxiety Disorder (GAD)</li>\n<li>Panic disorders with or without agoraphobia</li>\n<li>Short-term relief of anxiety symptoms</li>\n<li>Anxiety associated with depression</li>\n</ul>",
+    "image_alt": "xanax 1mg tablet anti-anxiety medicine",
+    "faq": "<h3>What is xanax 1mg used for?</h3>\n<p>xanax 1mg is used to treat anxiety disorders and panic attacks by calming the nervous system.</p>\n<h3>How long does xnax 1mg take to work?</h3>\n<p>This medication usually starts working within 30 to 60 minutes after administration.</p>\n<h3>Can xnax 1mg be taken long-term?</h3>\n<p>Long-term use may lead to dependence. It is generally recommended for short-term use under medical supervision.</p>",
+    "price_180": "1399"
   },
   {
-    "url": "/anti-anxiety/xnax1mg-alprazolam",
-    "name": "xnax 1mg",
-    "brand": "alprazolam",
+    "url": "/anti-anxiety/xanax1mg-alpra",
+    "name": "xanax 1mg",
+    "brand": "alpra",
     "category": "Anti-Anxiety",
-    "price": "199",
+    "price": "349",
     "sku": "",
     "dosage": "1mg",
     "active_ingredients": "",
@@ -233,19 +235,22 @@
     "additional_details": "",
     "meta_description": "xnax 1mg tablet is commonly used to treat anxiety disorders and panic attacks. Learn about its uses, dosage, side effects, precautions and safety information.",
     "isPopular": true,
-    "meta_title": "xnax 1mg Tablet – Uses, Dosage, Side Effects | MedsForPain",
-    "uses": "xnax 1mg is commonly used for:\n<ul>\n<li>Generalized Anxiety Disorder (GAD)</li>\n<li>Panic disorders with or without agoraphobia</li>\n<li>Short-term relief of anxiety symptoms</li>\n<li>Anxiety associated with depression</li>\n</ul>",
+    "meta_title": "xanax 1mg Tablet – Uses, Dosage, Side Effects | MedsForPain",
+    "uses": "xanax 1mg is commonly used for:\n<ul>\n<li>Generalized Anxiety Disorder (GAD)</li>\n<li>Panic disorders with or without agoraphobia</li>\n<li>Short-term relief of anxiety symptoms</li>\n<li>Anxiety associated with depression</li>\n</ul>",
+    "image_alt": "xanax 1mg tablet anti-anxiety medicine",
+    "uses": "xanax 1mg is commonly used for:\n<ul>\n<li>Generalized Anxiety Disorder (GAD)</li>\n<li>Panic disorders with or without agoraphobia</li>\n<li>Short-term relief of anxiety symptoms</li>\n<li>Anxiety associated with depression</li>\n</ul>",
     "image_alt": "xnax 1mg tablet anti-anxiety medicine",
-    "faq": "<h3>What is xnax 1mg used for?</h3>\n<p>xnax 1mg is used to treat anxiety disorders and panic attacks by calming the nervous system.</p>\n<h3>How long does xnax 1mg take to work?</h3>\n<p>This medication usually starts working within 30 to 60 minutes after administration.</p>\n<h3>Can xnax 1mg be taken long-term?</h3>\n<p>Long-term use may lead to dependence. It is generally recommended for short-term use under medical supervision.</p>",
-    "price_180": "499"
+    "faq": "<h3>What is xanax 1mg used for?</h3>\n<p>xanax 1mg is used to treat anxiety disorders and panic attacks by calming the nervous system.</p>\n<h3>How long does xnax 1mg take to work?</h3>\n<p>This medication usually starts working within 30 to 60 minutes after administration.</p>\n<h3>Can xnax 1mg be taken long-term?</h3>\n<p>Long-term use may lead to dependence. It is generally recommended for short-term use under medical supervision.</p>",
+    "price_180": "599",
+    "price_360": "899"
   },
   {
-    "url": "/anti-anxiety/xnax2mg-farmapram",
+    "url": "/anti-anxiety/xanax2mg-farmapram",
     "name": "xnax 2mg",
     "brand": "farmapram",
     "category": "Anti-Anxiety",
     "price": "450",
-    "price_180": "650",
+    "price_180": "799",
     "sku": "",
     "dosage": "2mg",
     "active_ingredients": "",
@@ -270,8 +275,8 @@
     "faq": "<h3>What is xnax 2mg used for?</h3>\n<p>xnax 2mg is used to treat anxiety disorders and panic attacks by calming the nervous system.</p>\n<h3>How long does xnax 2mg take to work?</h3>\n<p>This medication usually starts working within 30 to 60 minutes after administration.</p>\n<h3>Can xnax 2mg be taken long-term?</h3>\n<p>Long-term use may lead to dependence. It is generally recommended for short-term use under medical supervision.</p>"
   },
   {
-    "url": "/anti-anxiety/valiums10mg-bensedin",
-    "name": "Valiums 10mg",
+    "url": "/anti-anxiety/valium10mg-bensedin",
+    "name": "Valium 10mg",
     "brand": "bensedin",
     "category": "Anti-Anxiety",
     "price": "599",
@@ -291,38 +296,14 @@
     "additional_details": "",
     "meta_description": "",
     "isPopular": false,
-    "price_180": "1199"
+    "price_180": "1000"
   },
   {
-    "url": "/anti-anxiety/valiums10mg-elikem",
-    "name": "Valiums 10mg",
-    "brand": "elikem",
-    "category": "Anti-Anxiety",
-    "price": "299",
-    "sku": "",
-    "dosage": "10mg",
-    "active_ingredients": "",
-    "form": "",
-    "brand_or_generic": "",
-    "rating": "4.5",
-    "reviews_count": "50",
-    "availability": "In Stock",
-    "images": [],
-    "description": "",
-    "risks": "",
-    "side_effects": "",
-    "precautions": "",
-    "additional_details": "",
-    "meta_description": "",
-    "isPopular": false,
-    "price_180": "500"
-  },
-  {
-    "url": "/anti-anxiety/valiums10mg-diazepam",
-    "name": "Valiums 10mg",
+    "url": "/anti-anxiety/valium10mg-diazepam",
+    "name": "Valium 10mg",
     "brand": "diazepam",
     "category": "Anti-Anxiety",
-    "price": "399",
+    "price": "349",
     "sku": "",
     "dosage": "10mg",
     "active_ingredients": "",
@@ -339,14 +320,13 @@
     "additional_details": "",
     "meta_description": "",
     "isPopular": false,
-    "price_180": "699"
+    "price_180": "649"
   },
   {
-    "url": "/migrane/fiorcets-fiorcets",
-    "name": "Fiorcets",
-    "brand": "Fiorcets",
+    "url": "/migrane/fiorcet-butal-bital",
+    "name": "Fiorcet",
+    "brand": "Butal-Bital",
     "category": "Migraine",
-    "price": "199",
     "sku": "",
     "dosage": "",
     "active_ingredients": "",
@@ -363,14 +343,15 @@
     "additional_details": "",
     "meta_description": "",
     "isPopular": false,
-    "price_180": "399"
+    "price_180": "459",
+    "price_360": "918"
   },
   {
-    "url": "/pain-relief/oxycodone-k9",
+    "url": "/pain-relief/oxycodone-k90",
     "name": "Oxyycodone",
-    "brand": "K9",
+    "brand": "K90",
     "category": "Pain Relief",
-    "price": "499",
+    "price": "900",
     "sku": "",
     "dosage": "80 mg",
     "active_ingredients": "",
@@ -386,15 +367,14 @@
     "precautions": "",
     "additional_details": "",
     "meta_description": "",
-    "isPopular": false,
-    "price_180": "699"
+    "isPopular": false
   },
   {
     "url": "/pain-relief/oxycodone-m30",
     "name": "Oxyycodone",
     "brand": "M30",
     "category": "Pain Relief",
-    "price": "399",
+    "price": "900",
     "sku": "",
     "dosage": "30 mg",
     "active_ingredients": "",
@@ -410,39 +390,14 @@
     "precautions": "",
     "additional_details": "",
     "meta_description": "",
-    "isPopular": false,
-    "price_180": "699"
-  },
-  {
-    "url": "/pain-relief/Hydrocodones-watson",
-    "name": "Hydrocodones",
-    "brand": "Watson",
-    "category": "Pain Relief",
-    "price": "699",
-    "sku": "",
-    "dosage": "",
-    "active_ingredients": "",
-    "form": "",
-    "brand_or_generic": "",
-    "rating": "4.5",
-    "reviews_count": "50",
-    "availability": "In Stock",
-    "images": [],
-    "description": "",
-    "risks": "",
-    "side_effects": "",
-    "precautions": "",
-    "additional_details": "",
-    "meta_description": "",
-    "isPopular": false,
-    "price_180": "799"
+    "isPopular": false
   },
   {
     "url": "/pain-relief/Hydrocodones-10/325",
     "name": "Hydrocodones",
     "brand": "10/325",
     "category": "Pain Relief",
-    "price": "699",
+    "price": "900",
     "sku": "",
     "dosage": "",
     "active_ingredients": "",
@@ -458,15 +413,13 @@
     "precautions": "",
     "additional_details": "",
     "meta_description": "",
-    "isPopular": false,
-    "price_180": "799"
+    "isPopular": false
   },
   {
     "url": "/pain-relief/adderall-ad30",
     "name": "Adderall",
     "brand": "AD-30",
     "category": "Pain Relief",
-    "price": "600",
     "sku": "",
     "dosage": "",
     "active_ingredients": "",
@@ -483,6 +436,8 @@
     "additional_details": "",
     "meta_description": "",
     "isPopular": false,
-    "price_30": "300"
+    "price_30": "399",
+    "price_60": "799",
+    "price_90": "999"
   }
 ]

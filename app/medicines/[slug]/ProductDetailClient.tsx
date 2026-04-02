@@ -164,9 +164,6 @@ export default function ProductDetailClient({
           <div className="space-y-6">
             <div>
               <div className="flex flex-wrap items-center gap-2 mb-3">
-                <span className="bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-0.5 rounded-full">
-                  {product.brand}
-                </span>
                 <Link
                   href={`/categories/${product.categorySlug}`}
                   className="bg-gray-100 text-gray-700 text-xs font-bold px-2.5 py-0.5 rounded-full hover:bg-gray-200 transition-colors"
@@ -183,12 +180,14 @@ export default function ProductDetailClient({
                   </span>
                 )}
               </div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 flex items-baseline gap-2">
                 {product.name}
+                {product.brand && product.brand !== "Generic" && (
+                  <span className="text-xl md:text-2xl font-bold text-gray-600">
+                    ({product.brand})
+                  </span>
+                )}
               </h1>
-              <p className="text-gray-600 mb-1 text-sm">
-                <span className="font-semibold text-gray-800">Brand:</span> {product.brand}
-              </p>
               <p className="text-gray-600 mb-3 text-sm">
                 <span className="font-semibold text-gray-800">Dosage:</span> {product.dosage}
               </p>

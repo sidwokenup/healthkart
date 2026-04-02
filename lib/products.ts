@@ -121,14 +121,11 @@ export const getAllProducts = (): Product[] => {
         
         const dynamicOptions: { label: string; price: number; quantity: number }[] = [];
         
-        // Always add the base price as "90 Pills" if it exists, UNLESS price_90 is explicitly defined
-        const basePrice = min > 0 ? min : 99.99;
-        if (!("price_90" in p)) {
-          dynamicOptions.push({ label: "90 Pills", price: basePrice, quantity: 90 });
-        }
-        
+        // Find all price_X keys
+        let hasAnyDynamicPrices = false;
         Object.keys(p).forEach(key => {
           if (key.startsWith('price_')) {
+            hasAnyDynamicPrices = true;
             const quantityStr = key.replace('price_', '');
             const quantity = parseInt(quantityStr);
             if (!isNaN(quantity)) {
@@ -144,8 +141,10 @@ export const getAllProducts = (): Product[] => {
           }
         });
 
-        // If no dynamic options found, fallback to just the base price
-        if (dynamicOptions.length === 0) {
+        const basePrice = min > 0 ? min : 99.99;
+
+        // If no dynamic options found at all, fallback to just the base price as 90 Pills
+        if (!hasAnyDynamicPrices) {
           quantityOptions = [
             { label: "90 Pills", price: basePrice }
           ];
